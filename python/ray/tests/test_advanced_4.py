@@ -87,14 +87,15 @@ def test_jemalloc_env_var_propagate():
             process_type=gcs_ptype,
         )
 
-    # When comps don't match the process_type, it should return an empty dict.
-    expected = {}
+    # When comps don't match the process_type, it should not contain MALLOC_CONF.
     actual = ray._private.services.propagate_jemalloc_env_var(
         jemalloc_path=library_path,
         jemalloc_conf="",
         jemalloc_comps=[ray._private.ray_constants.PROCESS_TYPE_RAYLET],
         process_type=gcs_ptype,
     )
+    assert "MALLOC_CONF" not in actual
+
     """
     When the malloc config is specified
     """

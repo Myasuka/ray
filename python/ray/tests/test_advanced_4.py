@@ -1,4 +1,6 @@
 from unittest import mock
+from unittest.mock import patch
+import os
 import subprocess
 import sys
 
@@ -111,6 +113,24 @@ def test_jemalloc_env_var_propagate():
         jemalloc_conf=malloc_conf,
         jemalloc_comps=[ray._private.ray_constants.PROCESS_TYPE_GCS_SERVER],
         process_type=gcs_ptype,
+    )
+    assert actual == expected
+
+
+@patch.dict(os.environ, {"RAY_LD_PRELOAD": "0"})
+def test_enable_jemallc_for_workers():
+    library_path = "/abc"
+    malloc_conf = "a,b,c"
+    expected = {
+        "LD_PRELOAD": library_path,
+        "MALLOC_CONF": malloc_conf,
+        "RAY_LD_PRELOAD": "0",
+    }
+    actual = ray._private.services.propagate_jemalloc_env_var(
+        jemalloc_path=library_path,
+        jemalloc_conf=malloc_conf,
+        jemalloc_comps=[ray._private.ray_constants.PROCESS_TYPE_WORKER],
+        process_type=ray._private.ray_constants.PROCESS_TYPE_WORKER,
     )
     assert actual == expected
 

@@ -10,7 +10,7 @@ set(FLATBUFFERS_VERSION "1.6.0")
 set(FLATBUFFERS_PREFIX "${CMAKE_BINARY_DIR}/flatbuffers_ep-prefix/src/flatbuffers_ep-install")
 if (NOT TARGET flatbuffers_ep)
   ExternalProject_Add(flatbuffers_ep
-    URL "https://github.com/google/flatbuffers/archive/v${FLATBUFFERS_VERSION}.tar.gz"
+    URL "https://github.com/google/flatbuffers/archive/refs/tags/v${FLATBUFFERS_VERSION}.tar.gz"
     CMAKE_ARGS
       "-DCMAKE_CXX_FLAGS=-fPIC"
       "-DCMAKE_INSTALL_PREFIX:PATH=${FLATBUFFERS_PREFIX}"

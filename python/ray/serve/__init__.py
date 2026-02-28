@@ -6,6 +6,9 @@ try:
         Application,
         Deployment,
         RunTarget,
+        TaskProcessorAdapter,
+        TaskProcessorConfig,
+        TaskResult,
         _run,
         _run_many,
         delete,
@@ -21,6 +24,8 @@ try:
         shutdown,
         start,
         status,
+        task_consumer,
+        task_handler,
     )
     from ray.serve.batching import batch
     from ray.serve.config import HTTPOptions
@@ -60,4 +65,9 @@ __all__ = [
     "status",
     "get_app_handle",
     "get_deployment_handle",
+    "task_consumer",
+    "task_handler",
+    "TaskProcessorConfig",
+    "TaskProcessorAdapter",
+    "TaskResult",
 ]

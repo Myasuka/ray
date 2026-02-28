@@ -56,6 +56,13 @@ from ray.serve.exceptions import RayServeException
 from ray.serve.handle import DeploymentHandle
 from ray.serve.multiplex import _ModelMultiplexWrapper
 from ray.serve.schema import LoggingConfig, ServeInstanceDetails, ServeStatus
+from ray.serve.task_processor import (
+    TaskProcessorAdapter,
+    TaskProcessorConfig,
+    TaskResult,
+    task_consumer,
+    task_handler,
+)
 from ray.util.annotations import DeveloperAPI, PublicAPI
 
 from ray.serve._private import api as _private_api  # isort:skip

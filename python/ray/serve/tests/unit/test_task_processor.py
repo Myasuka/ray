@@ -1,4 +1,10 @@
-"""Unit tests for the Ray Serve async task processing API.
+"""Ray Serve 异步任务处理 API 的单元测试。
+
+本测试文件覆盖公开 API 的核心行为：TaskProcessorConfig、TaskResult、
+TaskProcessorAdapter、task_consumer 和 task_handler 装饰器，以及内置的
+内存适配器（_InMemoryAdapter）——无需启动真实的 Ray 集群即可运行。
+
+Unit tests for the Ray Serve async task processing API.
 
 These tests exercise the public-API surface (TaskProcessorConfig, TaskResult,
 TaskProcessorAdapter, task_consumer, task_handler) and the built-in in-memory
